@@ -1,23 +1,42 @@
-
 import random
 
-"""
-diccionario_equipo = {'algoritomos anarquistas' : {"Héctor", "Addi", "Jesús Alberto"},
-                      'Hackers de café' :         {"Tania", "Patricia", "Rebeca"},
-                      'Codificadores nocturnos' : {"Jamileth", "Bryan", "Rosalinda"},
-                      'Ctrl+Z':                   {"Galilea", "Jennifer", "Juan"}}
 
+diccionario_equipo = {
+    'algoritomos anarquistas': ["Héctor", "Addi", "Jesús Alberto"],
+    'Hackers de café': ["Tania", "Patricia", "Rebeca"],
+    'Codificadores nocturnos': ["Jamileth", "Bryan", "Rosalinda"],
+    'Ctrl+Z': ["Galilea", "Jennifer", "Juan"]
+}
 
+# 
 lista_de_todos_los_integrantes = []
+for equipo in diccionario_equipo.values():
+    lista_de_todos_los_integrantes.extend(equipo)
 
-for clave,valor in diccionario_equipo.items():
-    lista_de_todos_los_integrantes.append(valor)
 
-print(lista_de_todos_los_integrantes)
-print()
+combinaciones_pasadas = []
+for equipo in diccionario_equipo.values():
+    for i in range(len(equipo)):
+        for j in range(i + 1, len(equipo)):
+            combinaciones_pasadas.append({equipo[i], equipo[j]})
 
-"""
-lista_de_todos_los_integrantes = ["Héctor", "Addi", "Jesús Alberto","Tania", "Patricia", "Rebeca","Jamileth", "Bryan", "Rosalinda","Galilea", "Jennifer", "Juan"]
-for integrante in lista_de_todos_los_integrantes:
-    pareja = [random.choice(lista_de_todos_los_integrantes), random.choice(lista_de_todos_los_integrantes)]
-    print(pareja)
+##
+nuevos_equipos = []
+integrantes_disponibles = lista_de_todos_los_integrantes[:]
+random.shuffle(integrantes_disponibles)
+
+while len(integrantes_disponibles) >= 2 and len(nuevos_equipos) < 6:
+    integrante1 = integrantes_disponibles.pop()
+    for i, integrante2 in enumerate(integrantes_disponibles):
+        if {integrante1, integrante2} not in combinaciones_pasadas:
+            nuevos_equipos.append((integrante1, integrante2))
+            integrantes_disponibles.pop(i)
+            break
+
+
+if len(nuevos_equipos) == 6:
+    print("Nuevos equipos:")
+    for i, pareja in enumerate(nuevos_equipos, start=1):
+        print(f"Equipo {i}: {pareja[0]} y {pareja[1]}")
+
+
