@@ -33,10 +33,12 @@ class Profesor:
         print(f"{self.nombre} dominó el tema {tema}")
 
     def teach_topic(self, no_tema: int) -> str:
-        tema = input("Ingresa el tema que vas a enseñar: ")
-        self.temas_dominados.append(tema)
-        print(f"{self.nombre} añadió el tema {tema} a su lista.")
-        if no_tema > len(self.temas_dominados):
+        #tema = input("Ingresa el tema que vas a enseñar: ")
+        #self.temas_dominados.append(tema)
+        #print(f"{self.nombre} añadió el tema {tema} a su lista.")
+        print(f"no tema: {no_tema}")
+        print(f"len(self.temas_dominados) {len(self.temas_dominados)}")
+        if no_tema < len(self.temas_dominados):
             return self.temas_dominados[no_tema]
         else:
             return "Fuera de rango"
@@ -57,10 +59,21 @@ if __name__ == '__main__':
     print(estudiante2)
     print()
     profesor1 = Profesor("Profesor")
-    profesor1.dominar_tema("Clases")
-    profesor1.teach_topic(1)
+    profesor1.dominar_tema("Class")
+    profesor1.dominar_tema("Objets")
+    profesor1.dominar_tema("Math")
+    profesor1.teach_topic(2)
     print(profesor1)
 
+    tema1 = profesor1.teach_topic((1))
+    estudiante1.aprender_tema(tema1)
+    estudiante2.aprender_tema(tema1)
+
+    #Dicho de otra forma
+    #estudiante2.aprender_tema(profesor1.teach_topic(2))
+
+    print(estudiante1)
+    print(estudiante2)
 
 
 

@@ -62,3 +62,14 @@ print(f"Ravenclaw {Ravenclaw} points" )
 print(f"Hufflepuff {Hufflepuff} points")
 print(f"Slytherin {Slytherin} points")
 
+max = Slytherin
+if max <= Hufflepuff:
+    max = Hufflepuff
+if max <= Ravenclaw:
+    max = Ravenclaw
+if max <= Gryffindor:
+    max = Gryffindor
+print(max)
+
+
+
