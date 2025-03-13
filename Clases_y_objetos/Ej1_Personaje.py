@@ -1,4 +1,3 @@
-
 print(" * * * * * * * * * * * * * * * * * * * * * * * * * * *  * * * * * * * ")
 print(" * Durán Breceda Lourdes Jamileth                                   * ")
 print(" *                                                                  * ")
@@ -27,34 +26,47 @@ class Personaje:
         Constructor que inicializa la posición del personaje en (0, 0)
         y le asigna un ID único.
         """
+
         self.x = 0
         self.y = 0
         self.id = Personaje.contador_id
         Personaje.contador_id += 1
 
+
+
+
     def moverse(self, ordenes: str) -> None:
         """
         Mueve al personaje según las órdenes dadas.
-        :param ordenes: Cadena de caracteres con las direcciones de movimiento.
+        :param ordenes: Cadena de caracteres con las órdenes de movimiento.
         """
+
         for orden in ordenes:
-            if orden in ('A', 'a') and self.y < 10:
+            if orden in ("A","a") and self.y < 10:
                 self.y += 1
-            elif orden in ('R', 'r') and self.y > 0:
+            elif orden in ("R","r") and self.y > 0:
                 self.y -= 1
-            elif orden in ('D', 'd') and self.x < 10:
+            elif orden in ("D","d") and self.x < 10:
                 self.x += 1
-            elif orden in ('I', 'i') and self.x > 0:
+            elif orden in ("I","i") and self.x > 0:
                 self.x -= 1
-            elif orden in ('S', 's'):
-                print("Programa detenido.")
+            elif orden in ("S","s"):
+                print("Saliendo...")
                 break
+
+
+
+
 
     def posicion_actual(self) -> None:
         """
         Muestra la posición actual del personaje.
         """
         print(f"Posición actual del Personaje {self.id}: ({self.x}, {self.y})")
+
+
+
+
 
     def __str__(self) -> str:
         """
@@ -66,18 +78,22 @@ class Personaje:
 
 """ %%%%%%%     CÓDIGO A NIVEL DE MÓDULO    %%%%%%%%%%%%%%%%%%%%% """
 if __name__ == "__main__":
+
+
     print("  -- Simulación de movimientos de un personaje --")
 
     personaje = Personaje()
 
+
     while True:
         personaje.posicion_actual()
         ordenes = input("Ingresa las ódenes de moviento: ")
-        if 'S' in ordenes or 's' in ordenes:
+        if "S" in ordenes or "s" in ordenes:
             break
-        personaje.moverse(ordenes)
+        personaje.moverse( ordenes)
 
-    print("\nPosición final del personaje:")
+
+    print("aPosición final del personaje:")
     personaje.posicion_actual()
 
 ##################################
