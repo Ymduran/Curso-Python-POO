@@ -1,69 +1,85 @@
 
+print(" * * * * * * * * * * * * * * * * * * * * * * * * * * *  * * * * * * * ")
+print(" * Durán Breceda Lourdes Jamileth                                   * ")
+print(" *                                                                  * ")
+print(" * Fecha: 13 de marzo del 2025                                      * ")
+print(" *                                                                  * ")
+print(" * Descripción:                                                     * ")
+print(" * Personaje que se desplaza                                        * ")
+print(" * * * * * * * * * * * * * * * * * * * * * * * * * * *  * * * * * * * ")
+print(" ")
+print(" ")
 
+""" %%%%%%%     Clase    %%%%%%%%%%%%%%%%%%%%% """
 class Personaje:
     """
-        Clase que representa a un Personaje.
-        Sus atributos son: no_id (atributo de clase), x, y y contador_id.
-        Sus métodos son: __init__(), __str__(), aumentar_sueldo().
+    Clase que representa a un personaje en un videojuego.
+    Atributos de clase: contador_id (para asignar IDs únicos).
+    Atributos de instancia: x, y (posición en la ventana), id.
+    Métodos: __init__(), moverse(), posicion_actual(), __str__().
     """
-    no_id = 1
-    def __init__(self, x: int, y: int) ->None :
-        self.x = x
-        self.y = y
-        self.contador_id = Personaje.contador_id
-        Personaje.contador_id +=1
+
+    # Atributo de clase
+    contador_id = 1
+
+    def __init__(self):
+        """
+        Constructor que inicializa la posición del personaje en (0, 0)
+        y le asigna un ID único.
+        """
+        self.x = 0
+        self.y = 0
+        self.id = Personaje.contador_id
+        Personaje.contador_id += 1
+
     def moverse(self, ordenes: str) -> None:
-
-
-
-class Empleado:
-    pass
-
-
-    def aumentar_sueldo(self, porcentaje: float) -> None:
         """
-        Se utiliza para aumentar el sueldo de acuerdo con un porcentaje.
-        :param porcentaje: Porcentaje a incrementar el sueldo.
+        Mueve al personaje según las órdenes dadas.
+        :param ordenes: Cadena de caracteres con las direcciones de movimiento.
         """
-        if porcentaje > 0:
-            self.sueldo += self.sueldo * (porcentaje/100)
-            print(f"El sueldo de {self.nombre} ahora es de {self.sueldo:,.2f}")
+        for orden in ordenes:
+            if orden in ('A', 'a') and self.y < 10:
+                self.y += 1
+            elif orden in ('R', 'r') and self.y > 0:
+                self.y -= 1
+            elif orden in ('D', 'd') and self.x < 10:
+                self.x += 1
+            elif orden in ('I', 'i') and self.x > 0:
+                self.x -= 1
+            elif orden in ('S', 's'):
+                print("Programa detenido.")
+                break
 
-        else:
-            print("No se aplicó ningún cambio, ya que por Ley, el sueldo no puede disminuir.")
-
+    def posicion_actual(self) -> None:
+        """
+        Muestra la posición actual del personaje.
+        """
+        print(f"Posición actual del Personaje {self.id}: ({self.x}, {self.y})")
 
     def __str__(self) -> str:
         """
-        Se utiliza para definir la representación en cadena del empleado.
-        :return: El objeto en forma de cadena.
+        Representación en cadena del objeto Personaje.
+        :return: Cadena con el ID y la posición del personaje.
         """
-        return f"Empleado(id: {self.id_empleado}, Nombre: {self.nombre}, Sueldo: {self.sueldo:,.2f})"
-
+        return f"Personaje(id: {self.id}, Posición: ({self.x}, {self.y}))"
 
 
 """ %%%%%%%     CÓDIGO A NIVEL DE MÓDULO    %%%%%%%%%%%%%%%%%%%%% """
 if __name__ == "__main__":
-    # Ejemplo de uso de los atributos de clase.
-    print("  -- Ejemplo de uso de los atributos de clase.")
+    print("  -- Simulación de movimientos de un personaje --")
 
-    # Forma de acceder al atributo de clase.
-    print(f"Atributo de clase: {Empleado.no_id = }")
+    personaje = Personaje()
 
+    while True:
+        personaje.posicion_actual()
+        ordenes = input("Ingresa las ódenes de moviento: ")
+        if 'S' in ordenes or 's' in ordenes:
+            break
+        personaje.moverse(ordenes)
 
-    # Se crean varios objetos de la clase Empleado y se imprimen en consola.
-    alberto = Empleado("Alberto Martínez", 1110.1)
-    gerardo = Empleado("Gerardo Guerrero", 12_123.23)
-    esteban = Empleado("Esteban Ramírez", 999.23)
+    print("\nPosición final del personaje:")
+    personaje.posicion_actual()
 
-    print()
-    print("Se crean empleados:")
-    print(alberto)
-    print(gerardo)
-    print(esteban)
-
-    # Se muestra nuevamente el atributo de clase.
-    print()
-    print(f"Atributo de clase: {Empleado.no_id = }")
+##################################
 
 
