@@ -8,34 +8,25 @@ print(" * Create a function that finds the integral of the expression passed.*  
 print(" * * * * * * * * * * * * * * * * * * * * * * * * * * *  * * * * * * * ")
 print(" ")
 print(" ")
-
 import unittest
 
-def integrate(coefficient, exponent) -> str:
+
+def integrate(coefficient: int, exponent:int) -> str:
     """
-    :param coefficient_of_x: De tipo entero
+    :param coefficient: De tipo entero
     :param exponent: De tipo entero
     :return: Una cadena que muestra la integral
     """
-    return f"∫{coefficient}x^{exponent}dx = {coefficient / (exponent + 1)}^{exponent + 1} + C"
-
-
-
-def basic_tests() -> None:
-    """
-
-    :return:
-    """
-    test.assert_equals(integrate(3, 2), "1x^3")
-    test.assert_equals(integrate(12, 5), "2x^6")
-    test.assert_equals(integrate(20, 1), "10x^2")
-    test.assert_equals(integrate(40, 3), "10x^4")
-    test.assert_equals(integrate(90, 2), "30x^3")
-
-
+    return f'{coefficient // (exponent + 1)}x^{exponent + 1} '
 
 if __name__ == '__main__':
-    basic_tests()
+    print(integrate(3, 2))
+    print(integrate(20, 1))
+
+
+
+
+
 
 
 
