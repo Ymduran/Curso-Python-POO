@@ -2,20 +2,14 @@
 def add_binary(a: int,b:int) -> str:
     suma = a + b
     lista = []
-    while True:
+    while suma > 0:
         if suma % 2 == 0:
             lista.append("0")
-        elif suma % 2 != 0:
+        else:
             lista.append("1")
         suma = suma // 2
-        if suma == 0:
-            #lista.append(1)
-            break
-    lista_auxiliar = []
-    for i in range(len(lista)):
-        lista_auxiliar.append(lista[-i])
 
-    return lista_auxiliar
+    return ''.join(lista[::-1])
 
 
 
