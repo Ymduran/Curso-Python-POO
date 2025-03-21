@@ -4,29 +4,28 @@ print(" *                                                                  * ")
 print(" * Fecha: 13 de marzo del 2025                                      * ")
 print(" *                                                                  * ")
 print(" * Descripción:                                                     * ")
-print(" * Personaje que se desplaza                                        * ")
+print(" * Personaje que se desplaza en coordenadas (x,y)                   * ")
 print(" * * * * * * * * * * * * * * * * * * * * * * * * * * *  * * * * * * * ")
 print(" ")
 print(" ")
 
-""" %%%%%%%     Clase    %%%%%%%%%%%%%%%%%%%%% """
+#Clase personaje
 class Personaje:
     """
-    Clase que representa a un personaje en un videojuego.
-    Atributos de clase: contador_id (para asignar IDs únicos).
-    Atributos de instancia: x, y (posición en la ventana), id.
+    Esta clase representa a un personaje, el cuál puede moverse en dos dimensiones mediante coordenadas.
+    Tiene un contador_id para que cada personaje tenga un id diferente.
+    Las posiciones se representan con las coordenas x (horizontal) y y (vertical).
     Métodos: __init__(), moverse(), posicion_actual(), __str__().
     """
 
     # Atributo de clase
-    contador_id = 1
+    contador_id = 1 #Se inicializa en 1
 
     def __init__(self):
         """
-        Constructor que inicializa la posición del personaje en (0, 0)
-        y le asigna un ID único.
+        El constructor inicia la posición del personaje en (0,0)
+        También un contador que aumenta id en 1
         """
-
         self.x = 0
         self.y = 0
         self.id = Personaje.contador_id
@@ -37,8 +36,8 @@ class Personaje:
 
     def moverse(self, ordenes: str) -> None:
         """
-        Mueve al personaje según las órdenes dadas.
-        :param ordenes: Cadena de caracteres con las órdenes de movimiento.
+        función moverse, mueve al personaje según la tecla que se presione.
+        :param ordenes: como cadena de caracteres con las letras que indican el movimiento.
         """
 
         for orden in ordenes:
@@ -60,42 +59,34 @@ class Personaje:
 
     def posicion_actual(self) -> None:
         """
-        Muestra la posición actual del personaje.
+        Muestra la posición actual del personaje
         """
         print(f"Posición actual del Personaje {self.id}: ({self.x}, {self.y})")
 
 
-
-
-
     def __str__(self) -> str:
         """
-        Representación en cadena del objeto Personaje.
-        :return: Cadena con el ID y la posición del personaje.
+        El str es una representación del objeto Personaje
+        :return: Una cadenaa con el id y la posición del personaje
         """
         return f"Personaje(id: {self.id}, Posición: ({self.x}, {self.y}))"
 
 
-""" %%%%%%%     CÓDIGO A NIVEL DE MÓDULO    %%%%%%%%%%%%%%%%%%%%% """
 if __name__ == "__main__":
 
-
-    print("  -- Simulación de movimientos de un personaje --")
-
-    personaje = Personaje()
+    personaje_yam = Personaje() #Se crea a el primer personaje
 
 
     while True:
-        personaje.posicion_actual()
+        personaje_yam.posicion_actual()
         ordenes = input("Ingresa las ódenes de moviento: ")
         if "S" in ordenes or "s" in ordenes:
             break
-        personaje.moverse( ordenes)
+        personaje_yam.moverse( ordenes)
 
 
-    print("aPosición final del personaje:")
-    personaje.posicion_actual()
+    print("Posición final del personaje:")
+    personaje_yam.posicion_actual()
 
-##################################
 
 
