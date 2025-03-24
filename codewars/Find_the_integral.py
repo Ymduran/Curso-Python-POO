@@ -9,10 +9,20 @@ print(" * * * * * * * * * * * * * * * * * * * * * * * * * * *  * * * * * * * ")
 print(" ")
 print(" ")
 import unittest
-
+"""
+Crea una función que encuentre la integral de la expresión pasada.
+Para encontrar la integral, solo necesitas sumar uno al exponente (el segundo argumento) 
+y dividir el coeficiente (el primer argumento) entre ese nuevo número.
+Por ejemplo, para 3x^2, la integral sería 1x^3: sumamos uno al exponente y 
+dividimos el coeficiente entre ese nuevo número.
+Notas:
+La salida debe ser una cadena.
+El coeficiente y el exponente siempre son un entero positivo.
+"""
 
 def integrate(coefficient: int, exponent:int) -> str:
     """
+    Esta Función muestra en formato de str la integral
     :param coefficient: De tipo entero
     :param exponent: De tipo entero
     :return: Una cadena que muestra la integral
