@@ -7,7 +7,15 @@ Nota:
 Tus puntos no se incluyen en la matriz de puntos de tu clase. ¡No los olvides al calcular el promedio!
 """
 
-def better_than_average(class_points, your_points):
+def better_than_average(class_points:int, your_points:int) -> bool:
+    """
+    Esta función compara los promedios de las calificaciones de la clase con tus puntos, como se trata de un booleano
+    retorna directamente una operación booleana.
+    suma de tod0s los puntos de la clase/ cantidad de elementos(calificaciones) < tu promedio
+    :param class_points: Una lista con todas las calificaciones del grupo, excepto la tuya
+    :param your_points: Tu calificación
+    :return: Un valor verdadero o falso si tu promedio es mayor que el del grupo
+    """
     return sum(class_points)/len(class_points) < your_points
 
 if __name__ == '__main__':

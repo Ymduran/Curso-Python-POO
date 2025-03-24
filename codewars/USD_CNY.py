@@ -16,7 +16,7 @@ def usdcny(usd:int) -> str:
     """
     Esta función convierte los doláres a Yuan chino, multiplicando cada dolar por su equivalencia en 'Chinese Yuan' que es 6.75
     :param usd:
-    :return: Regresa un str
+    :return: Regresa un str con la conversión dentro de la horación
     """
     return f"{(usd * 6.75):.2f} Chinese Yuan"
 
