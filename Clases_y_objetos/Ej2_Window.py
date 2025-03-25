@@ -21,52 +21,82 @@ print(" ")
         draw_scoreboard(): Llama al método draw del scoreboard para mostrarlo en la ventana.
         update_score(): Actualiza la puntuación del scoreboard y lo redibuja.
         __str__(): Devuelve una representación en cadena del objeto.
+        
+    Relación entre Clases:
+        La clase Windows tiene una relación de agregación con la clase Scoreboard. Esto significa que la ventana contiene un scoreboard, pero el scoreboard puede existir independientemente de la ventana.
+
+
+
 """
-class Windows:
-    def __init__(self, title: str, width: int, height: int, scoreboard: Scoreboard)-> None:
+
+
+class Window:
+    def __init__(self, title: str = "Nueva Ventana", width: int = 800, height: int = 600,
+                 scoreboard: Scoreboard = None) -> None:
         self._title = title
         self._width = width
         self._height = height
-        self.scoreboard = scoreboard
+        self._scoreboard = scoreboard if scoreboard else Scoreboard()
 
     def draw_scoreboard(self) -> None:
-        pass
-    #Mét0do property
-    @property
-    def title(self) -> int:
-        self._title = title
-    # Mét0do getter
-    @title.getter
-    def title(self, _title):
-        self._title = title
+        """Dibuja el scoreboard en la ventana."""
+        print(f"Dibujando scoreboard en la ventana '{self._title}'...")
+        self._scoreboard.draw()
 
-    # Mét0do property
+    def update_score(self, new_score: int) -> None:
+        """Actualiza la puntuación del scoreboard y lo redibuja."""
+        print(f"Actualizando puntuación a {new_score} en '{self._title}'...")
+        self._scoreboard.points = new_score
+        self.draw_scoreboard()
+
+    def __str__(self) -> str:
+        return f"Window(title='{self._title}', width={self._width}, height={self._height}, scoreboard={self._scoreboard})"
+
+    # Métodos property y setter para los atributos
+
+    @property
+    def title(self) -> str:
+        return self._title
+
+    @title.setter
+    def title(self, value: str) -> None:
+        if isinstance(value, str) and value.strip():
+            self._title = value
+        else:
+            raise ValueError("El título debe ser una cadena de texto no vacía.")
+
     @property
     def width(self) -> int:
-        self._width = width
-    # Mét0do getter
-    @width.getter
-    def title(self, _width):
-        self._width = width
+        return self._width
 
-    # Mét0do property
+    @width.setter
+    def width(self, value: int) -> None:
+        if isinstance(value, int) and value > 0:
+            self._width = value
+        else:
+            raise ValueError("El ancho debe ser un entero positivo.")
+
     @property
     def height(self) -> int:
-        self._height = height
-    # Mét0do getter
-    @width.getter
-    def title(self, _height):
-        self._height = height
+        return self._height
 
-    # Mét0do property
+    @height.setter
+    def height(self, value: int) -> None:
+        if isinstance(value, int) and value > 0:
+            self._height = value
+        else:
+            raise ValueError("La altura debe ser un entero positivo.")
+
     @property
-    def height(self) -> int:
-        self._scoreboard = scoreboard
-    # Mét0do getter
-    @width.getter
-    def title(self, _scoreboard):
-        self._scoreboard = scoreboard
+    def scoreboard(self) -> Scoreboard:
+        return self._scoreboard
 
+    @scoreboard.setter
+    def scoreboard(self, value: Scoreboard) -> None:
+        if isinstance(value, Scoreboard):
+            self._scoreboard = value
+        else:
+            raise ValueError("El scoreboard debe ser una instancia de la clase Scoreboard.")
 
 
 

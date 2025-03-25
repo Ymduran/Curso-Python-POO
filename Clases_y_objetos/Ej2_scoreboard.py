@@ -68,10 +68,10 @@ class Scoreboard:
 
 
     @property
-    def size(self) -> int:
+    def size(self) -> float:
         return self._size
     @size.setter
-    def size(self, value: int):
+    def size(self, value: float):
             self._size = value
 
 
