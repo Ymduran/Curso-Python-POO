@@ -43,7 +43,7 @@ class Torneo:
 
 
     @property
-    def equipos(self) -> tuple[]:
+    def equipos(self) -> tuple[Equipo]:
         return self._equipos
     @nombre.setter
     def nombre(self, value: tuple):
