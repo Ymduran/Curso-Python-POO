@@ -47,16 +47,6 @@ class Equipo:
     def __str__(self) -> str:
         return f"Equipo id = {self.id_equipo} | Nombre equipo = {self._nombre} \n Jugadores: {self._jugadores}"
 
-    @property
-    def nombre(self) -> str:
-        return self._nombre
-    @nombre.setter
-    def nombre(self, value: str):
-        self._nombre = value
-
-    @property
-    def id_equipo(self) -> int:
-        return self._id_equipo
 
 
 
