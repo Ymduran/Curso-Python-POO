@@ -1,3 +1,7 @@
+"""
+Torneo.py
+"""
+
 from Examen_Parcial_1.Equipo import Equipo
 """
 Clase Torneo:

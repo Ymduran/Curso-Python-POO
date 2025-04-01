@@ -1,4 +1,6 @@
-
+"""
+Equipo.py
+"""
 from Examen_Parcial_1.Jugador import Jugador
 
 """
@@ -33,13 +35,14 @@ class Equipo:
 
 
     def agregar_jugadores(self, *jugadores: tuple[Jugador]) -> None:
-        pass
+        jugadores.append
 
     def remover_jugadores(self, *jugadores: tuple[Jugador]) -> None:
-        pass
+        jugadores.pop()
 
     def mostrar_jugadores(self) -> None:
-        pass
+        #accediendo a los atributos
+        print(f"Mostrar jugadores del equipo {equipo}")
 
     def total_goles(self) -> None:
         pass
