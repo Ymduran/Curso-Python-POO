@@ -22,37 +22,63 @@ Clase Torneo:
 
 
 class Torneo:
-    def __init__(self, nombre: str, equipos: list[Equipo]):
+    def __init__(self, nombre: str, *equipos: Equipo):
         self._nombre = nombre
-        self._equipos = [Equipo]
+        self._equipos = list(equipos)  # Se almacena como lista
 
     def agregar_equipos(self, *equipos: tuple[Equipo]) -> None:
-        pass
+        for equipo in equipos:
+            self._equipos.append(equipo)
+            print(f"Se agregó equipo {equipo.nombre}")
+
 
     def remover_equipos(self, *equipos: tuple[Equipo]):
-        pass
+        for equipo in equipos:
+            if equipo in self._equipos:
+                self._equipos.remove(equipo)
 
     def mostrar_equipos(self) -> None:
-        pass
+        """
+        Muestra la lista de equipos en el torneo
+        """
+        print(f"Equipos en el torneo {self._nombre}:")
+        for equipo in self._equipos:
+            print(f" - {equipo}")
 
     def generar_rol(self) -> None:
-        pass
+        """Genera un rol de partidos 'todos contra todos' organizado en jornadas"""
+        if len(self._equipos) < 2:
+            print("No hay suficientes equipos para generar un rol de partidos.")
+            return
+
+        jornadas = []
+        equipos = self._equipos.copy()
+
+
+        num_jornadas = len(equipos) - 1
+        for i in range(num_jornadas):
+            partidos = []
+
+
+            for j in range(len(equipos) // 2):
+                partidos.append((equipos[j], equipos[-(j + 1)]))
+            jornadas.append(partidos)
+            equipos.insert(1, equipos.pop())  # Rotar equipos
+
+        # Mostrar jornadas
+        for i, jornada in enumerate(jornadas, start=1):
+            print(f"Jornada {i}:")
+            for partido in jornada:
+                print(f" - {partido[0]} vs {partido[1]}")
+            print()
+
+    def __str__(self) -> str:
+        equipos_str = ", ".join(str(equipo) for equipo in self._equipos)
+        return f"Nombre del Torneo: {self._nombre} | Equipos: {equipos_str}"
 
     @property
     def nombre(self) -> str:
         return self._nombre
     @nombre.setter
-    def nombre(self, value: str):
-        self._nombre = value
-
-
-    @property
-    def equipos(self) -> tuple[Equipo]:
-        return self._equipos
-    @nombre.setter
-    def nombre(self, value: tuple):
-        self._nombre = value
-
-
-    def __str__(self) -> str:
-        return f"Nombre Torneo = {self.nombre} | Equipos = {self._equipos}"
+    def nombre(self, nuevo_nombre: str) -> None:
+        self._nombre = nuevo_nombre
