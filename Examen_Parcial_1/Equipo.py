@@ -1,5 +1,5 @@
 from Examen_Parcial_1.Jugador import Jugador
-
+from colorama import Fore
 """
 Clase Equipo:
 
@@ -27,21 +27,25 @@ class Equipo:
     id = 1
 
 
-    def __init__(self, nombre: str, *jugadores: tuple[Jugador]):
-        self._id_equipo = Equipo.id  # Se asigna un ID único al equipo
-        Equipo.id += 1  # Se incrementa el ID para el próximo equipo
+    def __init__(self, nombre: str, *jugadores: Jugador):
         self._nombre = nombre
         self._jugadores = list(jugadores)  # Se almacena como lista
 
+        self._id_equipo = Equipo.id  # Se asigna un ID único al equipo
+        Equipo.id += 1  # Se incrementa el ID para el próximo equipo
 
-    def agregar_jugadores(self, *jugadores: tuple[Jugador]) -> None:
+
+    def agregar_jugadores(self, *jugadores: Jugador) -> None:
         for jugador in jugadores:
-            self._jugadores.append(jugador)
-            print(f"Se agregó jugador {jugador.nombre} :)")
+            if jugador not in self._jugadores:
+                self._jugadores.append(jugador)
+                print(f"Se agregó jugador {jugador.nombre} :)")
+            else:
+                print(f"El jugador {jugador.nombre} ya existe en el equipo :(")
 
 
 
-    def remover_jugadores(self, *jugadores: tuple[Jugador]) -> None:
+    def remover_jugadores(self, *jugadores: Jugador) -> None:
         """
         Métod0 para remover jugadores, funciona iterando y verifica sí está el jugador en la lista/tupla de jugadores y remueve cuando lo
         encuentre.
@@ -52,15 +56,18 @@ class Equipo:
         for jugador in jugadores:
             if jugador in self._jugadores:
                 self._jugadores.remove(jugador)
+                print(Fore.YELLOW + f"El jugador {jugador.nombre} se elimino correctamente.")
 
     def mostrar_jugadores(self) -> None:
         """
         Muestra la lista de jugadores del equipo iterando en todos los juagador
         e imprimiendo uno por uno.
         """
+        i=1
         print(f"Jugadores del equipo {self._nombre}:")
         for jugador in self._jugadores:
-            print(f" - {jugador}")
+            print(f" [{i}]- {jugador.nombre}")
+            i +=1
 
 
     def total_goles(self) -> int:
@@ -92,5 +99,14 @@ class Equipo:
     @nombre.setter
     def nombre(self, nuevo_nombre: str) -> None:
         self._nombre = nuevo_nombre
+    @property
+    def jugadores_existentes(self) -> list[Jugador]:
+        """ Devuelve una copia de la lista de jugadores para evitar modificaciones externas no controladas. """
+        return self._jugadores[:]
+
+    @jugadores_existentes.setter
+    def jugadores_existentes(self, value: list[Jugador]) -> None:
+        """ Modifica la lista de jugadores del equipo. """
+        self._jugadores = list(value)
 
 

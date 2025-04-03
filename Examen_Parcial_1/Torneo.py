@@ -26,13 +26,14 @@ class Torneo:
         self._nombre = nombre
         self._equipos = list(equipos)  # Se almacena como lista
 
-    def agregar_equipos(self, *equipos: tuple[Equipo]) -> None:
+    def agregar_equipos(self, *equipos: Equipo) -> None:
         for equipo in equipos:
-            self._equipos.append(equipo)
-            print(f"Se agregó equipo {equipo.nombre}")
+            if equipo not in self._equipos:
+                self._equipos.append(equipo)
+                print(f"Se agregó equipo {equipo.nombre}")
 
 
-    def remover_equipos(self, *equipos: tuple[Equipo]):
+    def remover_equipos(self, *equipos: Equipo):
         for equipo in equipos:
             if equipo in self._equipos:
                 self._equipos.remove(equipo)
@@ -41,12 +42,15 @@ class Torneo:
         """
         Muestra la lista de equipos en el torneo
         """
+        i=0
         print(f"Equipos en el torneo {self._nombre}:")
         for equipo in self._equipos:
-            print(f" - {equipo}")
+            print(f"[{i}] - {equipo.nombre}")
+            i+=1
 
     def generar_rol(self) -> None:
         """Genera un rol de partidos 'todos contra todos' organizado en jornadas"""
+        l = 1
         if len(self._equipos) < 2:
             print("No hay suficientes equipos para generar un rol de partidos.")
             return
@@ -58,8 +62,6 @@ class Torneo:
         num_jornadas = len(equipos) - 1
         for i in range(num_jornadas):
             partidos = []
-
-
             for j in range(len(equipos) // 2):
                 partidos.append((equipos[j], equipos[-(j + 1)]))
             jornadas.append(partidos)
@@ -69,8 +71,10 @@ class Torneo:
         for i, jornada in enumerate(jornadas, start=1):
             print(f"Jornada {i}:")
             for partido in jornada:
-                print(f" - {partido[0]} vs {partido[1]}")
+                print(f" {l}- {partido[0].nombre} vs {partido[1].nombre}")
+                l+=1
             print()
+            l = 1
 
     def __str__(self) -> str:
         equipos_str = ", ".join(str(equipo) for equipo in self._equipos)
@@ -82,3 +86,7 @@ class Torneo:
     @nombre.setter
     def nombre(self, nuevo_nombre: str) -> None:
         self._nombre = nuevo_nombre
+    @property
+    def equipos(self) -> list[Equipo]:
+        """ Devuelve una copia de la lista de equipos para evitar modificaciones externas no controladas. """
+        return self._equipos[:]

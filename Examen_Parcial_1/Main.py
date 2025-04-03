@@ -1,6 +1,6 @@
 
 from colorama import Fore
-from colorama import Fore
+from Codedex.guess import jugadores, torneo
 from Examen_Parcial_1.Jugador import Jugador
 from Examen_Parcial_1.Equipo import Equipo
 from Examen_Parcial_1.Torneo import Torneo
@@ -26,6 +26,7 @@ diseñar para cierta cantidad de equipos específicamente.
 
 """
 
+print("\n" * 5)
 print(Fore.GREEN+ "████████╗ ██████╗ ██████╗ ███╗   ██╗███████╗ ██████╗     ██████╗ ███████╗   ")
 print(Fore.RED+   "╚══██╔══╝██╔═══██╗██╔══██╗████╗  ██║██╔════╝██╔═══██╗    ██╔══██╗██╔════╝    ")
 print(Fore.CYAN+  "   ██║   ██║   ██║██████╔╝██╔██╗ ██║█████╗  ██║   ██║    ██║  ██║█████╗      ")
@@ -41,18 +42,16 @@ print(Fore.RED+   " ╚═╝      ╚═════╝    ╚═╝   ╚═�
 print(Fore.CYAN+  "   Por Durán Breceda Lourdes Jamileth. 403     ")
 
 # inicializar listas globales
-jugadores = []
-equipos = []
-torneo = []
+jugadores_disponibles = []
+equipos_disponibles = []
 
-
-def menu_principal() -> None:
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Menus
+def menu_principal() -> int:       # >>>>>>>>>>>>>>>>>>>>>>>>>>> Menú principal
 
     """
     Función que imprime menú principal
-    :return:
+    :return: retorna un valor entero según haya elegido el usuario.
     """
-    print("\n" * 5)
     print("[1].- Crear nuevo jugador.")
     print("[2].- Crear nuevo equipo.")
     print("[3].- Ver lista de jugadores.")
@@ -66,149 +65,214 @@ def menu_principal() -> None:
     print("[11].- Generar rol de juegos. ")
     print("[0].- Salir. ")
 
+    opcion = input(Fore.WHITE + "Selecciona una opción: ")
+    while not opcion.isnumeric() or int(opcion) not in range(0, 12):
+        print(Fore.RED + "Opción no válida. Intenta de nuevo")
+        opcion = input(Fore.WHITE + "Selecciona una opción: ")
+
+    return int(opcion)
 
 
-def ver_jugadores()-> None:
+def menu_equipos(lista_equipos: list[Equipo]):        # >>>>>>>>>>>>>>>>>>>>>>>>>>> Menú equipos
     """
-    Esta función es para ver a todos los jugadores iterando en jugadores.
-    :return:
+    :return: retorna un valor entero según haya elegido el usuario.
     """
-    if jugadores:
-        print("Lista de jugadores:")
-        for i, jugador in enumerate(jugadores):
-            print(f"[{i}] - {jugador.nombre} (Número: {jugador.numero})")
-    else:
-        print("Aún no hay jugadores registrados:(")
+    print(Fore.CYAN + "     Equipos")
+    for i, equipo_n in enumerate(lista_equipos, start=1):
+        print(Fore.CYAN + f"[{i}].- {equipo_n.nombre}")
 
-def ver_equipos(*equipos:Equipo) -> None:
+    opcion = input(Fore.WHITE + "Selecciona una opción: ")
+    while not opcion.isnumeric() or int(opcion) not in range(1, len(lista_equipos) + 1):
+        print(Fore.RED + "Opción no válida. Intenta de nuevo")
+        opcion = input(Fore.WHITE + "Selecciona una opción: ")
+
+    return int(opcion) - 1
+
+
+def menu_jugadores(lista_jugadores: list[Jugador]):     # >>>>>>>>>>>>>>>>>>>>>>>>>>> Menú jugadores
     """
-    Función que imprime los equipos iterando en todos los equipo.
-    :return:
+    :return: retorna un valor entero según haya elegido el usuario.
     """
-    count = 1
-    if equipos:
-        print("Lista de equipos:")
-        for equi in equipos:
-            print(f"[{count}].-{equi.nombre}")
-            count +=1
-    else:
-        print("Aún no hay jugadores resgistrados :(.")
+    print(Fore.CYAN + "     Jugadores")
+    for i, integrante in enumerate(lista_jugadores, start=1):
+        print(Fore.CYAN + f"[{i}].- {integrante.nombre}")
+
+    opcion = input(Fore.WHITE + "Selecciona una opción: ")
+    while not opcion.isnumeric() or int(opcion) not in range(1, len(lista_jugadores) + 1):
+        print(Fore.RED + "Opción no válida. Intenta de nuevo")
+        opcion = input(Fore.WHITE + "Selecciona una opción: ")
+
+    return int(opcion) - 1
 
 
-
-
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Código a nivel de módulo.
 if __name__ == '__main__':
 
     flag = 0
 
     #Crear jugadores
+    torneo_predeterminado = Torneo("Torneo Rinos")
 
-    torneo_predeterminado = Torneo("Torneo predeterminado")
+    while flag == 0:\
 
-
-    juagador_predeterminado_01 = Jugador("Romero", 1)
-    jugadores.append(juagador_predeterminado_01)
-
-    juagador_predeterminado_02 = Jugador("Guadalupe", 2)
-    jugadores.append(juagador_predeterminado_02)
-
-    juagador_predeterminado_03 = Jugador("Sof", 3)
-    jugadores.append(juagador_predeterminado_03)
-
-    juagador_predeterminado_04 = Jugador("Pato", 4)
-    jugadores.append(juagador_predeterminado_04)
-
-
-    while flag == 0:
-        menu_principal()
-        option = int(input("Por favor, ingresa una de las opciones anteriores: "))
-        if option == 1: #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Crear nuevo jugador
+        option = menu_principal()
+        #listo
+        # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Crear nuevo jugador.
+        if option == 1:
             nombre_jugador = input("Ingrese el nombre del nuevo jugador: ")
             numero_jugador = int(input("Ingresa el número del nuevo jugador: "))
             nuevo_jugador = Jugador(nombre_jugador,numero_jugador)
-            jugadores.append(nuevo_jugador)
+            jugadores_disponibles.append(nuevo_jugador)
 
-
-        elif option == 2: #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  Crear nuevo equipo jugador
+        #listo
+        # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  Crear nuevo equipo jugador.
+        elif option == 2:
             nombre_equipo = input("Ingrese nombre del equipo a crear: ")
             nuevo_equipo = Equipo(nombre_equipo)
-            equipos.append(nuevo_equipo)
-        elif option == 3: #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Ver lista de jugadores
-            ver_jugadores()
+            equipos_disponibles.append(nuevo_equipo)
+        # listo
+        # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Ver lista de jugadores.
+        elif option == 3:
+            if not torneo_predeterminado.equipos:
+                print(Fore.RED + "No hay jugadores creados.")
+            else:
+                for equipo in torneo_predeterminado.equipos:
+                    print(Fore.CYAN + f"     {equipo}")
+                    equipo.mostrar_jugadores()
+        # listo
+        # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Ver lista de equipos.
+        elif option == 4:
+            if not torneo_predeterminado.equipos:
+                print(Fore.RED + "No hay equipos en el torneo.")
+            else:
+                torneo_predeterminado.mostrar_equipos()
+        # listo
+        # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Agregar jugadores a un nuevo equipo.
+        elif option == 5:
+            salir = 1
+            if not torneo_predeterminado.equipos:   # Verificar que existen equipos en el torneo.
+                print(Fore.RED + "No hay equipos en el torneo.")
+            else:
+                jugadores_elejidos = []
+                equipo = torneo_predeterminado.equipos[menu_equipos(torneo_predeterminado.equipos)]
+                if not jugadores_disponibles:       # Verificar que existen jugadores disponibles.
+                    print(Fore.RED + "No hay jugadores disponibles.")
+                else:
+                    while salir != 0 :       # Seleccionar jugadores a agregar
+                        jugador = jugadores_disponibles[menu_jugadores(jugadores_disponibles)]
+                        jugadores_elejidos.append(jugador)
+                        print("Seleccionado correctamente.")
 
+                        jugadores_disponibles.remove(jugador)  # Eliminar el jugador elejido de los jugadores disponibles despues de agregarlo a jugadores elejidos.
 
-        elif option == 4: #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Ver lista de equipos
-            ver_equipos()
+                        salir = input("Ingrese un 1 para seguir o 0 para terminar: ").strip()
+                        while not salir.isdigit() or int(salir) not in [0, 1]:
+                            print(Fore.RED + "Opción no válida. Intenta de nuevo.")
+                            salir = input(Fore.GREEN + "Ingrese un 1 para seguir o 0 para terminar: ").strip()
+                        salir = int(salir)
 
+                    if jugadores_elejidos:  # Si hay jugadores seleccionados, agregarlos al equipo
+                        equipo.agregar_jugadores(*jugadores_elejidos)
+                    else:
+                        print(Fore.YELLOW + "No se agregó ningún jugador al equipo.")
+        # listo
+        # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Eliminar jugadores de un equipo.
+        elif option == 6:
+            salir = 1
+            if not torneo_predeterminado.equipos:       # Verificar que existen equipos en el torneo.
+                print(Fore.RED + "No hay equipos en el torneo.")
+            else:
+                jugadores_eliminar = []
+                equipo = torneo_predeterminado.equipos[menu_equipos(torneo_predeterminado.equipos)]
+                if not equipo.jugadores_existentes:      # Verificar que existen jugadores dentro del equipo.
+                    print(Fore.RED + "No hay jugadores en el equipo.")
+                else:
+                    while salir != 0:
+                        jugador = equipo.jugadores_existentes[menu_jugadores(equipo.jugadores_existentes)]
+                        jugadores_eliminar.append(jugador)
+                        print("Seleccionado correctamente.")
 
-        elif option == 5: #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Agregar jugadores a un nuevo equipo
-            ver_equipos(torneo_predeterminado._equipos)
-            indice_equipo = int(input("Seleccione el índice del equipo: "))
-            salir = input("Presiona enter para continuar o S para salir")
+                        salir = input("Ingrese un 1 para seguir o 0 para terminar: ").strip()
+                        while not salir.isdigit() or int(salir) not in [0, 1]:
+                            print(Fore.RED + "Opción no válida. Intenta de nuevo.")
+                            salir = input(Fore.GREEN + "Ingrese un 1 para seguir o 0 para terminar: ").strip()
+                        salir = int(salir)
 
-            while salir not in ("S","s"):
-                ver_jugadores()
-                indice_jugador = int(input("Selecciona índice del juagador: "))
-                salir = input("Presiona enter para continuar o S para salir")
-                equipo = equipos[indice_equipo]
-                jugador = jugadores[indice_jugador]
-                equipo.agregar_jugadores(jugador)
+                    if jugadores_eliminar:  # Si hay jugadores seleccionados, agregarlos al equipo
+                        equipo.remover_jugadores(*jugadores_eliminar)
+                    else:
+                        print(Fore.YELLOW + "No se elimino ningún jugador al equipo.")
+        # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Agregar equipos al torneo.
+        elif option == 7:
+            salir = 1
+            if not equipos_disponibles:  # Verificar que existen equipos disponibles.
+                print(Fore.RED + "No hay equipos en el torneo.")
+            else:
+                equipos_elejidos = []
 
+                while salir != 0:  # Seleccionar equipos a agregar
+                    equipo = equipos_disponibles[menu_equipos(equipos_disponibles)]
+                    equipos_elejidos.append(equipo)
+                    print("Seleccionado correctamente.")
 
+                    equipos_disponibles.remove(equipo)  # Eliminar el equipo elejido de los equipos disponibles despues de agregarlo a equipos elejidos.
 
+                    salir = input("Ingrese un 1 para seguir o 0 para terminar: ").strip()
+                    while not salir.isdigit() or int(salir) not in [0, 1]:
+                        print(Fore.RED + "Opción no válida. Intenta de nuevo.")
+                        salir = input(Fore.GREEN + "Ingrese un 1 para seguir o 0 para terminar: ").strip()
+                    salir = int(salir)
 
+                if equipos_elejidos:  # Si hay jugadores seleccionados, agregarlos al equipo
+                    torneo_predeterminado.agregar_equipos(*equipos_elejidos)
+                else:
+                    print(Fore.YELLOW + "No se agregó ningún jugador al equipo.")
+        # listo
+        # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Eliminar equipos del torneo
+        elif option == 8:
+            salir = 1
+            if not torneo_predeterminado.equipos:  # Verificar que existen equipos en el torneo.
+                print(Fore.RED + "No hay equipos en el torneo.")
+            else:
+                equipos_eliminar = []
+                while salir != 0:
+                    equipo = torneo_predeterminado.equipos[menu_equipos(torneo_predeterminado.equipos)]
+                    equipos_eliminar.append(equipo)
+                    print("Seleccionado correctamente.")
 
+                    salir = input("Ingrese un 1 para seguir o 0 para terminar: ").strip()
+                    while not salir.isdigit() or int(salir) not in [0, 1]:
+                        print(Fore.RED + "Opción no válida. Intenta de nuevo.")
+                        salir = input(Fore.GREEN + "Ingrese un 1 para seguir o 0 para terminar: ").strip()
+                    salir = int(salir)
 
-        elif option == 6: #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Eliminar jugadores de un equipo
-            ver_equipos()
-            indice_equipo = int(input("Seleccione el equipo: "))
-            equipo = equipos[indice_equipo]
-            equipo.mostrar_jugadores()
-            indice_jugador = int(input("Seleccione el jugador a eliminar: "))
-            equipo.remover_jugadores(equipo._jugadores[indice_jugador])
+                if equipos_eliminar:  # Si hay jugadores seleccionados, agregarlos al equipo
+                    torneo_predeterminado.remover_equipos(*equipos_eliminar)
+                else:
+                    print(Fore.YELLOW + "No se elimino ningún equipo del torneo.")
+        # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Anotar goles a un jugador
+        elif option == 9:
+            equipo = torneo_predeterminado.equipos[menu_equipos(torneo_predeterminado.equipos)]
+            jugador = equipo.jugadores_existentes[menu_jugadores(equipo.jugadores_existentes)]
 
-
-
-        elif option == 7: #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Agregar equipos al torneo
-            lista_equipos_agregar = []
-            ver_equipos()
-            indice_equipo = None
-            while indice_equipo not in ("S" , "s"):
-                indice_equipo = int(input("Seleccione el índice del equipo a agregar al torneo o 'S' para salir " ))
-                lista_equipos_agregar.append(equipos[indice_equipo])
-            torneo_predeterminado.agregar_equipos(*lista_equipos_agregar)
-
-
-
-        elif option == 8: #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Eliminar equipos del torneo
-            print(f"Equipos en el torneo: {torneo._equipos}")
-            indice_equipo = int(input("Seleccione el equipo a eliminar del torneo: "))
-            torneo.remover_equipos(torneo._equipos[indice_equipo])
-
-
-
-        elif option == 9: #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Anotar goles a un jugador
-            ver_jugadores()
-            indice_jugador = int(input("Seleccione el jugador al que se le anotarán goles: "))
-            goles_anotar = int(input("Número de goles a anotar: "))
-            jugadores[indice_jugador].anotar_goles(goles_anotar)
-
-
-        elif option == 10: #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Conocer el número total de goles de los equipos
-            for equipo in equipos:
-                print(f"Equipo: {equipo.nombre} - Goles totales: {equipo.total_goles()}")
-
-
-        elif option == 11:  #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Generar rol de juegos
-            torneo.generar_rol()
-
-
-        elif option == 0:  #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Salir
+            goles = input(f"ingrese la cantidad de goles que se le anotaran al jugador {jugador.nombre}: ")
+            while not goles.isnumeric():
+                print(Fore.RED + "Opción no válida. Intenta de nuevo")
+                goles = input(Fore.WHITE + "Selecciona una opción: ")
+            goles = int(goles)
+            jugador.anotar_goles(goles)
+        # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Conocer el número total de goles de los equipos
+        elif option == 10:
+            for equipo in torneo_predeterminado.equipos:
+                total_goles = sum(jugador.goles for jugador in equipo.jugadores_existentes)
+                print(f"El total de goles del equipo {equipo.nombre} es: {total_goles}")
+        # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Generar rol de juegos
+        elif option == 11:
+            torneo_predeterminado.generar_rol()
+        # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Salir
+        elif option == 0:
             print("Saliendo del programa... ")
             flag = 1
-
-
-
             """
             equipos = [] #Se crea la lista de equipos
             numero_equipos = int(input("Ingrese número (PAR) de equipos que jugarán:  "))#Debe ser par porque los emparejamientos deben ser par
@@ -241,16 +305,6 @@ if __name__ == '__main__':
                 rol = [] #Reincia la lista cada vez solo para imprimirlos
             """
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+        print()
+        print(Fore.WHITE + "-----------------------------")
+        print()

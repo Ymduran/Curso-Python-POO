@@ -23,6 +23,18 @@ class Jugador:
         self._numero = numero
         self._goles = goles
 
+
+    def anotar_goles(self, no_goles: int) -> None:
+        """
+        Mét0do para sumar goles
+        :param no_goles: Goles a meter, que posteriormente se sumará a un total de goles.
+        :return:
+        """
+        self._goles += no_goles
+
+    def __str__(self) -> str:
+        return f"Jugador: {self._nombre} | Número: {self._numero} | Goles: {self._goles}"
+
     @property
     def nombre(self) -> str:
         return self._nombre
@@ -43,20 +55,6 @@ class Jugador:
     @goles.setter
     def goles(self, value: int):
         self._goles = value
-
-
-    def anotar_goles(self, no_goles: int) -> None:
-        """
-        Mét0do para sumar goles
-        :param no_goles: Goles a meter, que posteriormente se sumará a un total de goles.
-        :return:
-        """
-        self._goles += no_goles
-
-    def __str__(self) -> str:
-        return f"Jugador: {self._nombre} | Número: {self._numero} | Goles: {self._goles}"
-
-
 
 
 
