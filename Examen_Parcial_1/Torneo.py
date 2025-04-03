@@ -49,7 +49,9 @@ class Torneo:
             i+=1
 
     def generar_rol(self) -> None:
-        """Genera un rol de partidos 'todos contra todos' organizado en jornadas"""
+        """
+        Genera un rol de partidos 'todos contra todos' organizado en jornadas
+        """
         l = 1
         if len(self._equipos) < 2:
             print("No hay suficientes equipos para generar un rol de partidos.")
@@ -88,5 +90,7 @@ class Torneo:
         self._nombre = nuevo_nombre
     @property
     def equipos(self) -> list[Equipo]:
-        """ Devuelve una copia de la lista de equipos para evitar modificaciones externas no controladas. """
+        """
+        Regresará una copia de la lista de equipos para evitar modificaciones externas no controladas
+        """
         return self._equipos[:]

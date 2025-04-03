@@ -101,12 +101,16 @@ class Equipo:
         self._nombre = nuevo_nombre
     @property
     def jugadores_existentes(self) -> list[Jugador]:
-        """ Devuelve una copia de la lista de jugadores para evitar modificaciones externas no controladas. """
+        """
+        Devuelve una copia de la lista de jugadores para evitar modificaciones externas no controladas.
+        """
         return self._jugadores[:]
 
     @jugadores_existentes.setter
     def jugadores_existentes(self, value: list[Jugador]) -> None:
-        """ Modifica la lista de jugadores del equipo. """
+        """
+        Modifica la lista de jugadores del equipo.
+        """
         self._jugadores = list(value)
 
 
