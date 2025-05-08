@@ -18,12 +18,8 @@ Crear una función que reciba un número entero como argumento y regrese:
 def even_or_odd(number):
     """
     Determina si un número es par o impar.
-
-    Parámetro:
-    number (int): Número entero a evaluar.
-
-    Retorna:
-    str: "Even" si es par, "Odd" si es impar.
+    :param: number (int): Número entero a evaluar.
+    :return: str: "Even" si es par, "Odd" si es impar.
     """
     if number % 2 == 0:
         return "Even"
