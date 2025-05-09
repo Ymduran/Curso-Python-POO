@@ -9,10 +9,8 @@ print(" * * * * * * * * * * * * * * * * * * * * * * * * * * *  * * * * * * * ")
 print(" ")
 print(" ")
 
-"""
-Escribe una clase llamada Solution que tenga un método llamado main.
-Este método debe imprimir en pantalla la frase "Hello World!" seguido de un salto de línea.
-"""
+""" Escribe una clase llamada Solution que tenga un método llamado main.
+Este método debe imprimir en pantalla la frase "Hello World!" seguido de un salto de línea."""
 
 class Solution:
     def main(*parametros):

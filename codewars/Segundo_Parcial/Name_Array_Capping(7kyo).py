@@ -1,14 +1,11 @@
 def cap_me(arr):
     """
-    Recibe una lista de nombres y devuelve una nueva lista con cada nombre
+    recibe una lista de nombres y devuelve una nueva lista con cada nombre
     capitalizado (primera letra en mayúscula, el resto en minúscula).
-    
-    Parámetros:
-    arr (list): Lista de nombres como cadenas.
-    
-    Retorna:
-    list: Lista con los nombres capitalizados.
+    :param arr: Lista de nombres como cadenas.
+    :return: list: Lista con los nombres capitalizados.
     """
+
     nueva_lista = []
 
     for nombre in arr:

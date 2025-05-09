@@ -19,13 +19,10 @@ Esta función calcula ese valor leyendo directamente desde una cadena ordenada.
 def get_ascii(ch: str) -> int:
     """
     Calcula el valor ASCII del carácter recibido sin usar ord().
-
-    Parámetro:
-    ch (str): Un solo carácter.
-
-    Retorna:
-    int: Valor ASCII del carácter.
+    :param ch: Un solo carácter.
+    :return: Valor ASCII del carácter.
     """
+
     caracteres = ""
     for i in range(128):
         caracteres += chr(i)
@@ -37,7 +34,6 @@ def get_ascii(ch: str) -> int:
             break
 
     return posicion
-
 
 if __name__ == '__main__':
     print(get_ascii('A'))  # 65

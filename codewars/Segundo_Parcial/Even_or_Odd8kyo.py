@@ -31,4 +31,4 @@ if __name__ == '__main__':
     print(even_or_odd(4))   # Even
     print(even_or_odd(7))   # Odd
     print(even_or_odd(0))   # Even
-    print(even_or_odd(-3))  # Odd
+    print(even_or_odd(-3))  # Od

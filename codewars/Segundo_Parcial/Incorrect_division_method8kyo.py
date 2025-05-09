@@ -25,9 +25,11 @@ def divide_numbers(x, y):
     x (float/int): Número que será dividido.
     y (float/int): Número divisor.
 
-    Retorna:
-    float: Resultado de la división.
+    :param x: Número que será dividido.
+    :param y: Número divisor.
+    :return: float: Resultado de la división.
     """
+
     if y == 0:
         print("Error: No se puede dividir entre cero.")
         return None

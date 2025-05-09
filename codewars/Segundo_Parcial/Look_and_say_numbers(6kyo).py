@@ -1,14 +1,11 @@
 def look_and_say(data='1', maxlen=5):
     """
     Genera la secuencia 'look-and-say' a partir de un valor inicial.
-
-    Parámetros:
-    data (str): Valor inicial de la secuencia, como cadena de dígitos.
-    maxlen (int): Número máximo de iteraciones (longitud de la secuencia).
-
-    Retorna:
-    list: Lista con cada elemento de la secuencia generada.
+    :param data: Valor inicial de la secuencia, como cadena de dígitos.
+    :param maxlen: Valor inical de la secuencia, como cadena de dígitos.
+    :return: list: Lista con cada elemento de la secuencia generada.
     """
+
     resultado = [data]  # Lista donde se guarda la secuencia completa
 
     for _ in range(maxlen - 1):  # Con la primera

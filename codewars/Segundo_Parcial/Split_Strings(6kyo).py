@@ -22,15 +22,12 @@ Ejemplos:
 
 def solution(s):
     """
-    Divide una cadena en pares de dos caracteres. Si la cantidad de caracteres es impar,
+     Divide una cadena en pares de dos caracteres. Si la cantidad de caracteres es impar,
     el último par se completa con un guion bajo.
-
-    Parámetro:
-    s (str): La cadena de entrada.
-
-    Retorna:
-    list: Lista con pares de caracteres.
+    :param s: La cadena de entrada.
+    :return: list: Lista con pares de caracteres.
     """
+
     resultado = []
     i = 0
 

@@ -1,15 +1,11 @@
 def chain(init_val, functions):
     """
     Aplica una lista de funciones en orden a un valor inicial.
-    
-    Parámetros:
-    init_val : cualquier tipo (usualmente numérico) - valor inicial sobre el que se aplican las funciones.
-    functions : lista de funciones - cada función toma un argumento y devuelve un valor.
-
-    Retorna:
+    :param: init_val : cualquier tipo (usualmente numérico) - valor inicial sobre el que se aplican las funciones.
+    :param: functions : lista de funciones - cada función toma un argumento y devuelve un valor.
+    :return
     El valor resultante después de aplicar todas las funciones en secuencia.
     """
-    
     resultado = init_val  # Comenzamos con el valor inicial
 
     indice = 0

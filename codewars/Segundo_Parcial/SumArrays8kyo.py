@@ -32,13 +32,10 @@ Supuestos:
 def sum_array(a):
     """
     Suma los elementos de una lista de números.
-
-    Parámetro:
-    a (list): Lista de números.
-
-    Retorna:
-    float: Suma total de los elementos. Si la lista está vacía, retorna 0.
+    :param a: Lista de números.
+    :return: Suma total de los elementos. Si la lista está vacía, retorna 0.
     """
+
     total = 0
 
     for numero in a:

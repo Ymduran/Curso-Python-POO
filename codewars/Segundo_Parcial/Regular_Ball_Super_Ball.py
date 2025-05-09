@@ -17,8 +17,7 @@ Si no se da ningún argumento, el tipo de balón debe ser "regular".
 
 class Ball(object):
     """
-    Clase que representa un balón con un tipo específico.
-    """
+    Clase que representa un balón con un tipo específico."""
     def __init__(self, tipo="regular"):
         self.ball_type = tipo
 

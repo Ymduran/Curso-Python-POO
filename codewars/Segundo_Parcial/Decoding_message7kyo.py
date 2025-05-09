@@ -13,22 +13,18 @@ print(" ")
 
 """
 Función: decode(message)
-
 Descripción:
 Convierte un mensaje codificado invirtiendo cada letra en el alfabeto.
 El mensaje solo contiene letras minúsculas y espacios.
 """
 
-def decode(message):
+def decode(message: str):
     """
     Decodifica un mensaje donde cada letra es sustituida por su reflejo en el alfabeto.
-
-    Parámetro:
-    message (str): El mensaje codificado en minúsculas y con espacios.
-
-    Retorna:
-    str: El mensaje decodificado.
+    :param: message (str): El mensaje codificado en minúsculas y con espacios.
+    :return: str: El mensaje decodificado.
     """
+
     alfabeto_original = "abcdefghijklmnopqrstuvwxyz"
     alfabeto_invertido = "zyxwvutsrqponmlkjihgfedcba"
     resultado = ""
@@ -55,6 +51,5 @@ def decode(message):
 # Pruebas
 if __name__ == '__main__':
     print(decode("r slkv mlylwb wvxlwvh gsrh nvhhztv"))
-    # Resultado esperado: "i hope nobody decodes this message"
     print(decode("zgyzhs rh ufm"))  # "attack is fun"
     print(decode("abc xyz"))        # "zyx cba"

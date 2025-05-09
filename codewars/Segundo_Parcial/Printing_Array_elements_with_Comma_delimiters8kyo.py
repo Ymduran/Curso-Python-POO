@@ -23,13 +23,10 @@ Todos los elementos deben convertirse en texto antes de unirlos.
 def print_array(arr):
     """
     Une los elementos de una lista en una cadena separada por comas.
-
-    Parámetro:
-    arr (list): Lista de cualquier tipo de datos.
-
-    Retorna:
-    str: Cadena con los elementos separados por comas.
+    :param arr: Lista de cualquier tipo de datos.
+    :return: Cadena con los elementos separados por comas.
     """
+
     resultado = ""
     
     for i in range(len(arr)):

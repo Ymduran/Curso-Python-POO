@@ -33,14 +33,11 @@ M → 1000
 
 def solution(n):
     """
-    Convierte un número entero entre 1 y 3999 a su forma en números romanos.
-
-    Parámetro:
-    n (int): Número entero entre 1 y 3999.
-
-    Retorna:
-    str: Cadena con el número romano correspondiente.
+    convierte un número entero entre 1 y 3999 a su forma en números romanos.
+    :param n: n (int): Número entero entre 1 y 3999.
+    :return: str: Cadena con el número romano correspondiente.
     """
+
     numeros = [
         (1000, 'M'),
         (900, 'CM'),

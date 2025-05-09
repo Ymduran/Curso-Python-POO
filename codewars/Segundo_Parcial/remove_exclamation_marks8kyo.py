@@ -23,13 +23,10 @@ Salida: "Python es increíble"
 def remove_exclamation_marks(s):
     """
     Elimina todos los signos de exclamación de la cadena.
-
-    Parámetro:
-    s (str): Cadena original.
-
-    Retorna:
-    str: Cadena sin signos de exclamación.
+    :param s: Elimina todos los signos de exclamación de la cadena.
+    :return: str: Cadena sin signos de exclamación.
     """
+
     nueva_cadena = ""
     
     for letra in s:

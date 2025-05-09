@@ -15,14 +15,11 @@ Escribe una función que reciba un argumento y retorne el cuadrado del mismo.
 
 def square(n):
     """
-    Eleva al cuadrado el número proporcionado.
-
-    Parámetro:
-    n (int o float): número a elevar.
-
-    Retorna:
-    int o float: el número elevado al cuadrado.
+     Eleva al cuadrado el número proporcionado.
+    :param n: número a elevar.
+    :return: el número elevado al cuadrado.
     """
+
     return n * n
 
 
