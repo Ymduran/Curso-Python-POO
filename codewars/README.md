@@ -27,3 +27,12 @@ El uso de in nos permite saber si un determinado elemento está en una clase ite
 lista = ["a", "b", "c"]
 print("a" in lista)
 - Se puede recorrer una lista comparando elemento por elemento para contar secuencias específicas.
+  Notas:
+
+- El método `zfill(n)` convierte una cadena rellenándola con ceros a la izquierda hasta tener longitud `n`.
+  Ejemplo: "7".zfill(3) => "007"
+- Para combinar texto y valores, se puede usar una f-string: f"Texto {variable}"
+- También se puede hacer con formato clásico: "Value is {:05d}".format(valor), aunque en este caso preferimos claridad.
+- zfill solo funciona con strings, por eso primero convertimos el número con str().
+- Este tipo de formato es muy usado cuando se manejan códigos, identificadores, tiempos o fechas.
+
