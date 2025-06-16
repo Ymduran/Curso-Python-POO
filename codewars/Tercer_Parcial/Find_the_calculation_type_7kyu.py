@@ -46,8 +46,8 @@ def calc_type(a: float, b: float, result: float) -> str:
 
 
 if __name__ == '__main__':
-    print("Prueba 1: calc_type(1, 2, 3) =>", operation(1, 2, 3))           #  "addition"
-    print("Prueba 2: calc_type(5, 2, 3) =>", operation(5, 2, 3))           #"subtraction"
+    print("Prueba 1: calc_type(1, 2, 3) =>", calc_type(1, 2, 3))           #  "addition"
+    print("Prueba 2: calc_type(5, 2, 3) =>", calc_type(5, 2, 3))           #"subtraction"
     print("Prueba 3: calc_type(3, 4, 12) =>", operation(3, 4, 12))         #  "multiplication"
     print("Prueba 4: calc_type(5, 2, 2.5) =>", operation(5, 2, 2.5))       # "division"
     print("Prueba 5: calc_type(10, 10, 20) =>", operation(10, 10, 20))     #  "addition"
