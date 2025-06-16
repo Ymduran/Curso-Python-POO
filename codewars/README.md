@@ -26,5 +26,4 @@ El uso de in nos permite saber si un determinado elemento está en una clase ite
 
 lista = ["a", "b", "c"]
 print("a" in lista)
-
-- 
+- Se puede recorrer una lista comparando elemento por elemento para contar secuencias específicas.
