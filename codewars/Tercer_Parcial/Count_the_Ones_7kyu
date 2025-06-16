@@ -47,14 +47,7 @@ if __name__ == '__main__':
 
 
 """
-Notas:
-- El peso de Hamming se puede calcular revisando los bits uno por uno usando divisiones sucesivas por 2.
-- En vez de usar cadenas o funciones como bin(), usamos lógica matemática.
-- El operador módulo (%) permite saber si el último bit es 1 o 0 (si es impar o par).
-- También puede usarse el operador & (bit a bit) para comparar el último bit: `if n & 1`.
-- n // 2 elimina el bit menos significativo y desplaza los bits hacia la derecha.
-- El ciclo termina cuando el número llega a 0, lo que significa que ya no quedan bits por revisar.
-- Esto demuestra que se puede trabajar con binarios sin necesidad de convertir a texto.
+
 
 """
 
