@@ -37,13 +37,13 @@ def hamming_weight(n: int) -> int:
     return contador
 
 
-# PRUEBAS DEL CÓDIGO:
+
 if __name__ == '__main__':
-    print("Prueba 1: hamming_weight(10)  =>", hamming_weight(10))    # Esperado: 2 (1010)
-    print("Prueba 2: hamming_weight(21)  =>", hamming_weight(21))    # Esperado: 3 (10101)
-    print("Prueba 3: hamming_weight(0)   =>", hamming_weight(0))     # Esperado: 0
-    print("Prueba 4: hamming_weight(255) =>", hamming_weight(255))   # Esperado: 8 (11111111)
-    print("Prueba 5: hamming_weight(1)   =>", hamming_weight(1))     # Esperado: 1 (1)
+    print("Prueba 1: hamming_weight(10)  =>", hamming_weight(10))    # 2 (1010)
+    print("Prueba 2: hamming_weight(21)  =>", hamming_weight(21))    # 3 (10101)
+    print("Prueba 3: hamming_weight(0)   =>", hamming_weight(0))     # 0
+    print("Prueba 4: hamming_weight(255) =>", hamming_weight(255))   # 8 (11111111)
+    print("Prueba 5: hamming_weight(1)   =>", hamming_weight(1))     #  1 (1)
 
 
 """
